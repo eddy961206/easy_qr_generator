@@ -29,6 +29,8 @@ $(document).ready(async function() {
     $('#qrResult').empty();
     const qrContainer = $('<div>').attr('id', 'qrContainer');
     $('#qrResult').append(qrContainer);
+
+    const defaultShowingSize = 128;
     
     // 새 QR 코드 생성
     qrCode = new QRCode(qrContainer[0], {
@@ -44,9 +46,13 @@ $(document).ready(async function() {
     setTimeout(() => {
       $('#qrContainer img').css({
         'display': 'block',
-        'margin': '0 auto'
+        'margin': '0 auto',
+        'width': `${defaultShowingSize}px`,
+        'height': `${defaultShowingSize}px`
       });
-    }, 50);
+      // 캔버스도 숨김
+      $('#qrContainer canvas').hide();
+    }, 0);
 
     // 다운로드 버튼 추가
     const downloadBtn = $('<button>')
@@ -62,11 +68,13 @@ $(document).ready(async function() {
   function downloadQRCode() {
     const img = $('#qrContainer img')[0];
     const canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
+    // 다운로드 시에는 원본 크기 사용
+    const originalSize = parseInt($('#size').val());
+    canvas.width = originalSize;
+    canvas.height = originalSize;
     
     const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, 0, 0, originalSize, originalSize);
     
     const dataUrl = canvas.toDataURL('image/png');
     const downloadLink = document.createElement('a');
