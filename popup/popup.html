@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>QR Code Generator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>QR Code Generator</h1>
+    
+    <div class="input-group">
+      <textarea id="inputText" placeholder="Enter text or URL"></textarea>
+    </div>
+
+    <div class="options-group">
+      <div class="option">
+        <label for="size">Size:</label>
+        <select id="size">
+          <option value="128">128x128</option>
+          <option value="256" selected>256x256</option>
+          <option value="512">512x512</option>
+        </select>
+      </div>
+
+      <div class="option">
+        <label for="errorLevel">Error Correction:</label>
+        <select id="errorLevel">
+          <option value="L">Low (7%)</option>
+          <option value="M" selected>Medium (15%)</option>
+          <option value="Q">Quartile (25%)</option>
+          <option value="H">High (30%)</option>
+        </select>
+      </div>
+
+      <div class="option">
+        <label for="foreground">Color:</label>
+        <input type="color" id="foreground" value="#000000">
+      </div>
+    </div>
+
+    <button id="generateBtn">Generate QR Code</button>
+
+    <div id="qrResult" class="qr-result">
+    </div>
+
+    <p class="contact-info">
+      <span id="contactMessage">* If you have any suggestions or issues, please contact:</span>
+      <a href="mailto:skykum2004@gmail.com">skykum2004@gmail.com</a>
+    </p>
+  </div>
+
+  <script src="../thirdParty/jquery-3.6.0.min.js"></script>
+  <script src="../thirdParty/qrcode.min.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html> 
