@@ -79,7 +79,7 @@ $(document).ready(async function() {
     const dataUrl = canvas.toDataURL('image/png');
     const downloadLink = document.createElement('a');
     downloadLink.href = dataUrl;
-    downloadLink.download = 'qrcode.png';
+    downloadLink.download = `qrcode${originalSize}.png`;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
